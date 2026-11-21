@@ -332,13 +332,15 @@ header {
 .about,
 .skills,
 .projects,
+.certificates,
 .contact {
     padding: 90px 30px;
     text-align: center;
 }
 
 .about,
-.projects {
+.projects,
+.certificates {
     background-color: var(--section-color);
 }
 
@@ -466,6 +468,21 @@ header {
     transform: translateY(-5px);
     border-color: var(--primary-color);
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Center the last skill card */
+.skill-card:last-child {
+    grid-column: 1 / -1;
+    width: calc(50% - 11px);
+    justify-self: center;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    .skill-card:last-child {
+        grid-column: auto;
+        width: 100%;
+    }
 }
 
 .skill-card h3 {
@@ -795,16 +812,38 @@ header {
     background-color: white;
 }
 
+/* Contact Cards Layout */
 .contact-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 25px;
+}
 
-    max-width: 850px;
-    margin: auto;
+/* Contact Group */
+.contact-group {
+    margin-top: 40px;
+}
+
+.contact-group-title {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
 }
 
 .contact-card {
+    min-width: 0;
     padding: 35px 25px;
 
     background-color: var(--section-color);
@@ -863,6 +902,131 @@ header {
 
 .contact-card a:hover {
     color: var(--primary-dark);
+}
+
+/* =========================================
+   CERTIFICATES SECTION
+========================================= */
+
+.certificates {
+    text-align: center;
+}
+
+/* Certificate Layout */
+
+.certificate-container {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+/* Certificate Card */
+
+.certificate-card {
+    min-width: 0;
+    padding: 35px 25px;
+
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.certificate-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+/* Certificate Icon */
+
+.certificate-icon {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 20px;
+
+    background-color: #dbeafe;
+    color: var(--primary-color);
+
+    border-radius: 15px;
+
+    font-size: 18px;
+    font-weight: 800;
+}
+
+/* Certificate Information */
+
+.certificate-card h3 {
+    color: var(--heading-color);
+    font-size: 19px;
+    margin-bottom: 10px;
+}
+
+.certificate-issuer {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.certificate-date {
+    color: var(--text-color);
+    font-size: 13px;
+    margin-bottom: 22px;
+}
+
+/* View Certificate Button */
+
+.certificate-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    margin-top: auto;
+    padding: 11px 18px;
+
+    background-color: var(--primary-color);
+    color: white;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition:
+        transform 0.25s ease,
+        background-color 0.25s ease;
+}
+
+.certificate-link:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+}
+
+/* Responsive */
+
+@media screen and (max-width: 768px) {
+    .certificate-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .certificate-container {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* =========================================
@@ -1035,10 +1199,13 @@ footer p {
 .secondary-button:focus-visible,
 .nav-button:focus-visible,
 .project-link:focus-visible,
+.certificate-link:focus-visible,
 .nav-links a:focus-visible,
 .menu-toggle:focus-visible,
 .lightbox-close:focus-visible,
-.lightbox-nav:focus-visible {
+.lightbox-nav:focus-visible,
+.gallery-item:focus-visible,
+.contact-card a:focus-visible {
     outline: 3px solid var(--primary-color);
     outline-offset: 4px;
 }
@@ -1249,6 +1416,7 @@ footer p {
     .about,
     .skills,
     .projects,
+    .certificates,
     .contact {
         padding: 65px 20px;
     }
@@ -1340,6 +1508,8 @@ footer p {
     .nav-links a,
     .skill-card,
     .project-card,
+    .certificate-card,
+    .certificate-link,
     .gallery-item,
     .gallery-item img,
     .contact-card,
@@ -1354,6 +1524,7 @@ footer p {
     .project-link:hover,
     .skill-card:hover,
     .project-card:hover,
+    .certificate-card:hover,
     .gallery-item:hover,
     .contact-card:hover {
         transform: none;
@@ -1363,4 +1534,7 @@ footer p {
         transform: none;
     }
 
+    .certificate-link:hover {
+        transform: none;
+    }
 }

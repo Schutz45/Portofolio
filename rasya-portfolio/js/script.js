@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ".skill-card, " +
         ".project-card, " +
         ".gallery-item, " +
+        ".certificate-card, " +
         ".contact-card"
     );
 
